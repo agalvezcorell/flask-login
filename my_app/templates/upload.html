@@ -1,4 +1,4 @@
-<!-- templates/profile.html -->
+<!-- templates/upload.html -->
 
 {% extends "base.html" %}
 
@@ -6,7 +6,7 @@
 <h1 class="title">
   Bienvenid@, {{ name }}, ¡Sube tu archivo!
 </h1>
-<form method="POST" enctype=multipart/form-data >
+<form method="POST" enctype=multipart/form-data action="/uploader">
   <div class="column is-4 is-offset-4">
     <div class="file has-name">
       <label class="file-label">
@@ -26,6 +26,7 @@
     </div>
     <input class="button" type="submit" value="Submit input">
     <input class="button" type="reset" value="Reset input">
+  </div>
 </form>
 
 

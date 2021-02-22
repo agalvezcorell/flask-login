@@ -19,9 +19,9 @@ def upload():
 
 
 
-@main.route('/upload', methods=['POST'])
+@main.route('/uploader', methods=['POST'])
 def file_post():
-    file_ = request.files('file')
+    file_ = request.form.files('file')
     return redirect(url_for('main.upload'))
 
 
