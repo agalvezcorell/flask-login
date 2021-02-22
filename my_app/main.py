@@ -1,7 +1,8 @@
 # main.py
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
 
 main = Blueprint('main', __name__)
 
@@ -13,7 +14,15 @@ def index():
 @main.route('/upload')
 @login_required
 def upload():
+
     return render_template('upload.html', name=current_user.name)
+
+
+
+@main.route('/upload', methods=['POST'])
+def file_post():
+    file_ = request.files('file')
+    return redirect(url_for('main.upload'))
 
 
 @main.route('/files')
@@ -21,6 +30,5 @@ def upload():
 def files():
     return render_template('files.html')
 
-@main.route('/upload')
-def media_file(filename):
-    pass
+
+
