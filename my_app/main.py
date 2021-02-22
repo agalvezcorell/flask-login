@@ -13,3 +13,9 @@ def index():
 @login_required
 def profile():
     return render_template('profile.html', name=current_user.name)
+
+
+@main.route('/files')
+@login_required
+def files():
+    return render_template('files.html')
