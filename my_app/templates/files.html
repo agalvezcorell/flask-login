@@ -4,9 +4,14 @@
 
 
 {% block content %}
-<h2 class="title">
-  List of files!
-</h2>
 
-{{ files }}
+<h2 class="title">
+  Archivos del servidor
+</h2>
+<div class="column is-8 is-offset-4">
+{% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+{% endfor %}
+</div>
 {% endblock %}

@@ -1,9 +1,10 @@
 # main.py
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
+import pandas as pd
+from . import tools as tool
 import shutil
 from werkzeug.utils import secure_filename
-from . import tools as tool
 
 
 main = Blueprint('main', __name__)
@@ -31,8 +32,8 @@ def file_post():
 @main.route('/files')
 @login_required
 def files():
-    archivos = tool.make_tree()
-    return render_template('files.html', files = archivos)
+    archivos = tool.make_tree2()
+    return render_template('files.html', tables=[archivos.to_html(classes='data')], titles="")
 
 
 
