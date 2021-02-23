@@ -13,5 +13,22 @@
             {{titles[loop.index]}}
             {{ table|safe }}
 {% endfor %}
+
 </div>
+
+<div class="column is-4 is-offset-4"></div>
+<form action = "/delete" method = "POST" >
+  <form class="box">
+    <div class="field">
+      <label class="label">Nombre del archivo</label>
+      <div class="control">
+        <input class="input" type="file_name" name= "file_name" placeholder="nombre del archivo">
+      </div>
+    </div>
+
+    <button class="button is-danger" name="submit_button" value="borra">Borrar archivo</button>
+    <button class="button is-link" name="submit_button" value="descarga">Descargar archivo</button>
+  </form>
+      </form>   
+ </div> 
 {% endblock %}

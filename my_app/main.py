@@ -37,3 +37,14 @@ def files():
 
 
 
+@main.route('/delete', methods=['POST'])
+@login_required
+def del_files():
+    archivo_borrar = request.form.get('file_name')
+    if request.form['submit_button'] == 'borra':
+            print(archivo_borrar,"borrar")
+    elif request.form['submit_button'] == 'descarga':
+            print(archivo_borrar,"descarga")
+    
+    archivos = tool.make_tree2()
+    return redirect(url_for('main.files'))
