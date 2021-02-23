@@ -1,5 +1,5 @@
 # main.py
-from flask import Blueprint, render_template, request, redirect, url_for, send_file
+from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
 from flask_login import login_required, current_user
 import pandas as pd
 from . import tools as tool
@@ -49,6 +49,8 @@ def del_files():
     elif request.form['submit_button'] == 'descarga':
             print(archivo,"descarga")
             archivos = tool.make_tree()
-            path = f"../files/{archivo}"
-            descarga = send_file(path, as_attachment=True)
+            path = f"../files"
+            file_ = archivo
+
+            return send_from_directory(directory=path,filename=archivo,as_attachment=True)
             return redirect(url_for('main.files'))
