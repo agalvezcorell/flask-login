@@ -22,8 +22,9 @@ def upload():
 def file_post():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(secure_filename(f.filename))    
-        tool.move_file(f.filename)
+        name = tool.change_name(f.filename)
+        f.save(secure_filename(name))  
+        tool.move_file(name)
         return redirect(url_for('main.upload'))
 
 
