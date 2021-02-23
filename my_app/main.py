@@ -1,5 +1,5 @@
 # main.py
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, send_file
 from flask_login import login_required, current_user
 import pandas as pd
 from . import tools as tool
@@ -32,7 +32,7 @@ def file_post():
 @main.route('/files')
 @login_required
 def files():
-    archivos = tool.make_tree2()
+    archivos = tool.make_tree()
     return render_template('files.html', tables=[archivos.to_html(classes='data')], titles="")
 
 
@@ -40,11 +40,15 @@ def files():
 @main.route('/delete', methods=['POST'])
 @login_required
 def del_files():
-    archivo_borrar = request.form.get('file_name')
+    archivo = request.form.get('file_name')
     if request.form['submit_button'] == 'borra':
-            print(archivo_borrar,"borrar")
+            print(archivo,"borrar")
+            borrado = tool.delete_file(archivo)
+            archivos = tool.make_tree()
+            return render_template('files.html', tables=[archivos.to_html(classes='data')], respuesta=borrado, titles="")
     elif request.form['submit_button'] == 'descarga':
-            print(archivo_borrar,"descarga")
-    
-    archivos = tool.make_tree2()
-    return redirect(url_for('main.files'))
+            print(archivo,"descarga")
+            archivos = tool.make_tree()
+            path = f"../files/{archivo}"
+            descarga = send_file(path, as_attachment=True)
+            return redirect(url_for('main.files'))

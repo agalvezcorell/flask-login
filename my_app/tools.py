@@ -14,16 +14,6 @@ def change_name(file):
 
 def make_tree():
     path = "./files"
-    
-    try: lst = os.listdir(path)
-    except OSError:
-        pass #ignore errors
-
-    return lst
-
-
-def make_tree2():
-    path = "./files"
     try: 
         lst = os.listdir(path)
         lst_all = []
@@ -33,6 +23,19 @@ def make_tree2():
                     "info": "wait"
                 })
     except OSError:
-        return ("no hay archivos en el servidor")
+        return ("No hay archivos en el servidor")
     data = pd.DataFrame.from_dict(lst_all)
     return data
+
+
+def delete_file(file):
+    path = "./files"
+    if os.path.exists(f"{path}/{file}"):
+        os.remove(f"{path}/{file}")
+        ok = "Archivo borrado correctamente"
+        return ok
+    else:
+        error = "El archivo no existe"
+        return error
+
+
