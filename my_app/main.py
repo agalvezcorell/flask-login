@@ -1,8 +1,9 @@
 # main.py
-import os
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
+import shutil
 from werkzeug.utils import secure_filename
+from . import tools as tool
 
 
 main = Blueprint('main', __name__)
@@ -21,9 +22,9 @@ def upload():
 def file_post():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(secure_filename(f.filename))
-    
-        return render_template('upload.html',name=current_user.name)
+        f.save(secure_filename(f.filename))    
+        tool.move_file(f.filename)
+        return redirect(url_for('main.upload'))
 
 
 @main.route('/files')
