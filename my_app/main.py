@@ -31,7 +31,8 @@ def file_post():
 @main.route('/files')
 @login_required
 def files():
-    return render_template('files.html')
+    archivos = tool.make_tree()
+    return render_template('files.html', files = archivos)
 
 
 
