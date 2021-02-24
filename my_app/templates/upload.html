@@ -6,11 +6,15 @@
 <h1 class="title">
   Bienvenid@, {{ name }}, ¡Sube tu archivo!
 </h1>
-<form action = "/uploader" method = "POST" 
+<form action = "/upload" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
          <input type = "submit"/>
       </form>   
+      <br> </br>
+      <h3 class="subtitle">
+        {{ texto }}
+      </h3>
  </div> 
 
 {% endblock %}

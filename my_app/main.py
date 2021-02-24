@@ -19,14 +19,15 @@ def upload():
     return render_template('upload.html', name=current_user.name)
 
 
-@main.route('/uploader', methods=['GET', 'POST'])
+@main.route('/upload', methods=['GET', 'POST'])
 def file_post():
     if request.method == 'POST':
         f = request.files['file']
         name = tool.change_name(f.filename)
         f.save(secure_filename(name))  
-        tool.move_file(name)
-        return redirect(url_for('main.upload'))
+        move = tool.move_file(name)
+    return render_template('upload.html', texto=move,name=current_user.name)
+
 
 
 @main.route('/files')
@@ -53,4 +54,4 @@ def del_files():
             file_ = archivo
 
             return send_from_directory(directory=path,filename=archivo,as_attachment=True)
-            return redirect(url_for('main.files'))
+            #return redirect(url_for('main.files'))
