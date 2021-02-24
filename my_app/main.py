@@ -43,10 +43,14 @@ def files():
 def del_files():
     archivo = request.form.get('file_name')
     if request.form['submit_button'] == 'borra':
-            print(archivo,"borrar")
-            borrado = tool.delete_file(archivo)
-            archivos = tool.make_tree()
-            return render_template('files.html', tables=[archivos.to_html(classes='data')], respuesta=borrado, titles="")
+            if tool.isadmin() == True:
+                borrado = tool.delete_file(archivo)
+                archivos = tool.make_tree()
+                return render_template('files.html', tables=[archivos.to_html(classes='data')], respuesta=borrado, titles="")
+            else:
+                archivos = tool.make_tree()
+                mensaje = "No tienes permisos para realizar esta acción"
+                return render_template('files.html', tables=[archivos.to_html(classes='data')], respuesta=mensaje, titles="")
     elif request.form['submit_button'] == 'descarga':
             print(archivo,"descarga")
             archivos = tool.make_tree()

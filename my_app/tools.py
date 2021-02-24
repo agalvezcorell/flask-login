@@ -3,8 +3,7 @@ import hashlib
 import pandas as pd
 import os
 import shutil
-
-
+from flask_login import current_user
 
 def move_file(file):
     path = "./files"
@@ -17,7 +16,6 @@ def move_file(file):
         shutil.move(f"{file}", "./files")
         ok = "Archivo subido al servidor"
         return ok
-    
 
 
 def change_name(file):
@@ -80,5 +78,8 @@ def getfecha():
     return now
 
 
-
-
+def isadmin():
+    if current_user.admin == True:
+        return True
+    else:
+        return False
