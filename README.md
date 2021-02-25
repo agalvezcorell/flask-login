@@ -2,7 +2,7 @@
 
 He una API con Flask que incluya gestión de usuarios y subida de archivos. Solamente los usuarios administradores podrán borrar archivos.
 
-![pantallas](https://github.com/agalvezcorell/flask-login/blob/main/images/pantallas.png)
+![pantallas](https://github.com/agalvezcorell/flask-login/blob/main/images/_pantallas.png)
 
 ## ¿Cómo crear la base de datos?
 
