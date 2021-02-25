@@ -31,6 +31,9 @@ Después inicie el programa escribiendo el siguiente comando `flask run`
 Para borrar archivos es necesario tanto estar logueado en la aplicación como ser administrador.
 Es necesario gestionar la base de datos y poner el campo "admin" a 1 (True) del usuario deseado.
 
+## Ruta para guardar los archivos
+
+Para guardar los archivos en las rutas deseadas habrá que modificar el programa e indicarle la ruta, ahora mismo en modo "desarrollo" se guardan en la carpeta files.
 
 
 
