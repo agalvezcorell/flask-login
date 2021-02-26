@@ -9,10 +9,12 @@ Solamente los usuarios administradores podrán borrar archivos.
 
 - Abra una ventana en la terminal y sitúese dentro de la carpeta flask-login.
 - Inicie python
-- Ejecute los siguientes comandos
+- Ejecute las siguientes líneas de código
 
-`from project import db, create_app`
-`db.create_all(app=create_app())`
+```
+from project import db, create_app
+db.create_all(app=create_app())
+```
 
 
 ## ¿Cómo iniciar la API?
